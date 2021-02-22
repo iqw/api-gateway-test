@@ -9,7 +9,7 @@ func root(w http.ResponseWriter, req *http.Request) {
 	_, _ = fmt.Fprintf(w, "hello-service is listening\n")
 }
 func v1hello(w http.ResponseWriter, req *http.Request) {
-	_, _ = fmt.Fprintf(w, "hello-service v1 hello\n")
+	_, _ = fmt.Fprintf(w, "%s\n", req.Header)
 }
 func v2hello(w http.ResponseWriter, req *http.Request) {
 	_, _ = fmt.Fprintf(w, "hello-service v2 hello\n")
