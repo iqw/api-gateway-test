@@ -1,5 +1,8 @@
 
-run: kong_init kong_provision
+run: kong_init kong_provision services_init
+	kubectl --namespace kong port-forward service/kong-kong-proxy 8080:80
+
+services_init:
 	sh cmd/monolith/k8s/deploy.sh
 	sh cmd/hello-service/k8s/deploy.sh
 
