@@ -1,0 +1,32 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongClusterPlugin
+metadata:
+  name: jwt-auth
+  annotations:
+    namespace: kong
+    kubernetes.io/ingress.class: kong
+  labels:
+    global: "true"
+plugin: jwt
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: jwt-credentials
+  namespace: kong
+type: Opaque
+stringData:
+  kongCredType: jwt
+  key: "1111"
+  secret: "1111"
+---
+apiVersion: configuration.konghq.com/v1
+kind: KongConsumer
+metadata:
+  name: hello-service
+  namespace: kong
+  annotations:
+    kubernetes.io/ingress.class: kong
+username: hello-service
+credentials:
+  - jwt-credentials

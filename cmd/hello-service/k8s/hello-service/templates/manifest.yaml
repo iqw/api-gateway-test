@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: theiqw/go-test-hello-service:1.0.0
+          image: theiqw/go-test-hello-service:latest
           ports:
             - containerPort: 8090
 
@@ -40,6 +40,7 @@ metadata:
   name: hello-service
   annotations:
     kubernetes.io/ingress.class: kong
+    konghq.com/plugins: jwt-auth
 spec:
   rules:
     - http:
